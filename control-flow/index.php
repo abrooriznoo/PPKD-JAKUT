@@ -180,15 +180,124 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+            <div class="d-flex justify-content-center">
+                <div class="card-body mb-3" style="width: 95%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <h4 class="text-start fst-italic">Array Satu Dimensi dengan Foreach</h4>
+                    <hr class="mb-4" style="margin: 0 auto; border: 2px solidrgb(0, 0, 0); border-radius: 5px;">
+                    <div>
+                        <?php
+                        $peserta = array(
+                            "PPKD JAKPUS",
+                            "WEB PROGRAMMING",
+                            "2025"
+                        );
 
-    <!-- <script>
+                        echo "Selamat Datang di " . $peserta[0] . "<br>" . "Kelas " . $peserta[1] . "<br>" . "Tahun " . $peserta[2] . "<br>";
+
+                        echo "<br>Menggunakan Foreach<br>";
+
+                        foreach ($peserta as $key => $value) {
+                            echo $key + 1 . ". " . $value . "<br>";
+                        }
+                        ?>
+                    </div>
+                </div>
+
+                <div class="card-body mb-3" style="width: 95%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <h4 class="text-start fst-italic">Array Dua Dimensi dengan Foreach</h4>
+                    <hr class="mb-4" style="margin: 0 auto; border: 2px solidrgb(0, 0, 0); border-radius: 5px;">
+                    <div>
+                        <?php
+                        $peserta = [
+                            // ["PPKD JAKUT", "WEB PROGRAMMING", "2025"],
+                            ["Abroor Rizky", "PHP"],
+                            ["Reiji", "Laravel"]
+                        ];
+                        ?>
+                        <div class="card-body" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                            <table class="table table-stripped" style="width: 95%;">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Nama</th>
+                                        <th>Bahasa Programming</th>
+                                    </tr>
+                                </thead>
+                                <?php
+                                $no = 1;
+                                foreach ($peserta as $p) {
+                                ?>
+                                    <tbody>
+                                        <tr>
+                                            <td><?= $no++ ?></td>
+                                            <td><?= $p[0] ?></td>
+                                            <td><?= $p[1] ?></td>
+                                        </tr>
+                                    </tbody>
+                                <?php } ?>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body mb-3" style="width: 95%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <h4 class="text-start fst-italic">Array Tiga Dimensi dengan Foreach</h4>
+                    <hr class="mb-4" style="margin: 0 auto; border: 2px solidrgb(0, 0, 0); border-radius: 5px;">
+                    <div>
+                        <?php
+                        $mobil = [
+                            [
+                                "Merek" => "Toyota",
+                                "Jenis" => "MPV",
+                                "Nama" => "Avanza"
+                            ],
+                            [
+                                "Merek" => "Honda",
+                                "Jenis" => "City Car",
+                                "Nama" => "Brio"
+                            ],
+                            [
+                                "Merek" => "Nissan",
+                                "Jenis" => "Sports Car",
+                                "Nama" => "GTR"
+                            ]
+                        ]
+                        ?>
+
+                        <div>
+                            <div class="card-body" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                                <table class="table table-stripped" style="width: 95%;">
+                                    <thead>
+                                        <tr>
+                                            <th>Merek</th>
+                                            <th>Jenis</th>
+                                            <th>Nama</th>
+                                        </tr>
+                                    </thead>
+                                    <?php
+                                    foreach ($mobil as $mob) :
+                                    ?>
+                                        <tbody>
+                                            <tr>
+                                                <td><?= $mob["Merek"] ?></td>
+                                                <td><?= $mob["Jenis"] ?></td>
+                                                <td><?= $mob["Nama"] ?></td>
+                                            </tr>
+                                        </tbody>
+                                    <?php endforeach; ?>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <script>
         const table = document.getElementById("countingTable");
         const rows = table.getElementsByTagName("tr");
     </script> -->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>
