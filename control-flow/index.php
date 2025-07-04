@@ -63,10 +63,16 @@
                 for ($i = 1; $i <= 10; $i++) {
                     echo "<tr>";
                     for ($j = 1; $j <= 10; $j++) {
-                        if ($i % 2 == 1) {
-                            echo "<td class='text-center'>$i.$j</td>";
-                        } else {
+                        if ($i % 2 == 0 && $j % 2 == 0) {
                             echo "<td class='text-center table-danger';'>$i.$j</td>";
+                        } elseif ($i % 2 == 0 && $j % 2 != 0) {
+                            echo "<td class='text-center table-primary'>$i.$j</td>";
+                        } elseif ($i % 2 != 0 && $j % 2 == 0) {
+                            echo "<td class='text-center table-success'>$i.$j</td>";
+                        } elseif ($i % 2 != 0 && $j % 2 != 0) {
+                            echo "<td class='text-center table-warning'>$i.$j</td>";
+                        } else {
+                            echo "<td class='text-center'>$i.$j</td>";
                         }
                     }
                     echo "</tr>";
