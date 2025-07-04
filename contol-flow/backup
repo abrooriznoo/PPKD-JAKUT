@@ -1,0 +1,14 @@
+<?php
+$nama = "PPKD JAKUT";
+$umur = 23;
+$alamat = "Jakarta Utara";
+
+if ($nama == "PPKD JAKUT") {
+    echo "<div class='text-center mb-3 fs-5'>Selamat datang di $nama <br></div>";
+} else {
+    echo "Nama saya bukan PPKD JAKUT";
+}
+
+for ($i = 0; $i <= $umur; $i++) {
+    echo "Hari ini adalah tahun ke-$i saya berdiri <br>";
+}
