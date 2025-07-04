@@ -13,7 +13,7 @@
 
     <div class="card mt-5 mx-auto" style="width: 80%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
         <div class=" card-body">
-            <h1 class="text-start ms-3">Pengulangan</h1>
+            <h1 class="text-start ms-3">Pengulangan For</h1>
             <hr class="mb-4" style="margin: 0 auto; border: 2px solidrgb(0, 0, 0); border-radius: 5px;">
             <table class="table table-bordered table-striped">
                 <?php
