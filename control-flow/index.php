@@ -9,28 +9,65 @@
 </head>
 
 <body>
-
-
-    <div class="card mt-5 mx-auto" style="width: 80%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-        <div class=" card-body">
+    <!-- FOR -->
+    <div class="card mt-3 mx-auto" style="width: 80%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <div class="card-body">
             <h1 class="text-start ms-3">Pengulangan For</h1>
             <hr class="mb-4" style="margin: 0 auto; border: 2px solidrgb(0, 0, 0); border-radius: 5px;">
             <table class="table table-bordered table-striped">
                 <?php
-                for ($i = 0; $i <= 10; $i++) {
+                for ($i = 1; $i <= 10; $i++) {
                     echo "<tr>";
-                    for ($j = 0; $j <= 5; $j++) {
+                    for ($j = 1; $j <= 5; $j++) {
                         echo "<td class='text-center'> $i.$j</td>";
-                        // if ($i == 0 && $j == 0) {
-                        //     echo "<th class='text-center'>X</th>";
-                        // } elseif ($i == 0) {
-                        //     echo "<th class='text-center'>$j</th>";
-                        // } elseif ($j == 0) {
-                        //     echo "<th class='text-center'>$i</th>";
-                        // } else {
-                        //     $hasil = $i * $j;
-                        //     echo "<td class='text-center'>$hasil</td>";
-                        // }
+                    }
+                    echo "</tr>";
+                }
+                ?>
+            </table>
+        </div>
+    </div>
+
+    <div class="card mt-3 mb-3 mx-auto" style="width: 80%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <div class="card-body">
+            <?php
+            for ($i = 1; $i <= 10; $i++) {
+                for ($j = 1; $j <= $i; $j++) {
+                    echo "*";
+                }
+                echo "<br>";
+            }
+            ?>
+        </div>
+    </div>
+
+    <div class="card mt-3 mb-3 mx-auto" style="width: 80%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <div class="card-body">
+            <?php
+            for ($i = 10; $i >= 1; $i--) {
+                for ($j = 1; $j <= $i; $j++) {
+                    echo "*";
+                }
+                echo "<br>";
+            }
+            ?>
+        </div>
+    </div>
+
+    <div class="card mt-3 mb-3 mx-auto" style="width: 80%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <div class="card-body">
+            <h1 class="text-start ms-3">Pengulangan dengan Pengkondisian</h1>
+            <hr class="mb-4" style="margin: 0 auto; border: 2px solidrgb(0, 0, 0); border-radius: 5px;">
+            <table class="table table-stripped">
+                <?php
+                for ($i = 1; $i <= 10; $i++) {
+                    echo "<tr>";
+                    for ($j = 1; $j <= 10; $j++) {
+                        if ($i % 2 == 1) {
+                            echo "<td class='text-center'>$i.$j</td>";
+                        } else {
+                            echo "<td class='text-center table-danger';'>$i.$j</td>";
+                        }
                     }
                     echo "</tr>";
                 }
