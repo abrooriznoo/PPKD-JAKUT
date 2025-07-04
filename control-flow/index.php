@@ -122,8 +122,64 @@
 
     <div class="card mt-3 mb-3 mx-auto" style="width: 80%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
         <div class="card-body">
-            <h1 class="text-start ms-3 fst-italic">Pengulangan dengan Pengkondisian</h1>
+            <h1 class="text-start ms-3 fst-italic">Function</h1>
             <hr class="mb-4" style="margin: 0 auto; border: 2px solidrgb(0, 0, 0); border-radius: 5px;">
+            <div class="d-flex justify-content-center">
+                <div class="card-body mb-3" style="width: 95%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <h4 class="text-start fst-italic">Strtoupper</h4>
+                    <hr class="mb-4" style="margin: 0 auto; border: 2px solidrgb(0, 0, 0); border-radius: 5px;">
+                    <div>
+                        <?php
+                        $text = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos ipsa consectetur placeat rerum debitis ab esse iste? Error aliquid delectus ut officiis? Natus totam dolorum magnam veritatis unde sit aliquid!";
+
+                        echo ucwords($text) . "<br>";
+                        ?>
+                    </div>
+                </div>
+                <div class="card-body mb-3" style="width: 95%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <h4 class="text-start    fst-italic">Strtolower</h4>
+                    <hr class="mb-4" style="margin: 0 auto; border: 2px solidrgb(0, 0, 0); border-radius: 5px;">
+                    <div>
+                        <?php
+                        $text = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos ipsa consectetur placeat rerum debitis ab esse iste? Error aliquid delectus ut officiis? Natus totam dolorum magnam veritatis unde sit aliquid!";
+
+                        echo strtolower($text);
+
+                        function toLowerCase($text)
+                        {
+                            return strtolower($text);
+                        }
+                        ?>
+                    </div>
+                </div>
+                <div class="card-body mb-3" style="width: 95%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <h4 class="text-start fst-italic">Function</h4>
+                    <hr class="mb-4" style="margin: 0 auto; border: 2px solidrgb(0, 0, 0); border-radius: 5px;">
+                    <div>
+                        <?php
+
+                        function cetak()
+                        {
+                            $text = "PPKD JAKUT";
+                            return "Selamat Datang di " . $text . "<br>";
+                        }
+
+                        echo cetak();
+
+                        function hitung()
+                        {
+                            $angka1 = 10;
+                            $angka2 = 3;
+
+                            $hasil = $angka1 * $angka2;
+                            return "Hasil dari penjumlahan $angka1 + $angka2 = " . $hasil . "<br>";
+                        }
+
+                        echo hitung();
+                        ?>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
