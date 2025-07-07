@@ -260,7 +260,7 @@
                                 "Jenis" => "Sports Car",
                                 "Nama" => "GTR"
                             ]
-                        ]
+                        ];
                         ?>
 
                         <div>
@@ -291,6 +291,67 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="card mt-3 mb-3 mx-auto" style="width: 80%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <div class="card-body">
+            <h1 class="text-start ms-3 fst-italic">Tables with Array</h1>
+            <hr class="mb-4" style="margin: 0 auto; border: 2px solidrgb(0, 0, 0); border-radius: 5px;">
+            <div class="d-flex justify-content-center">
+                <div class="card-body mb-3" style="width: 95%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <h4 class="text-start fst-italic">Array Satu Dimensi</h4>
+                    <hr class="mb-4" style="margin: 0 auto; border: 2px solidrgb(0, 0, 0); border-radius: 5px;">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Merek</th>
+                                    <th>Jenis</th>
+                                    <th>Nama</th>
+                                    <th>Photo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $peserta = [
+                                    [
+                                        "Merek" => "Toyota",
+                                        "Jenis" => "MPV",
+                                        "Nama" => "Avanza",
+                                        "Photo" => "https://medias.auto2000.co.id/sys-master-hybrismedia/hd8/h5a/8831557074974/avanza-g-gray_optimized.png"
+                                    ],
+                                    [
+                                        "Merek" => "Honda",
+                                        "Jenis" => "City Car",
+                                        "Nama" => "Brio",
+                                        "Photo" => "https://asset.honda-indonesia.com/variants/images/VmfueMMOko09BwpogWPFmBUShLbLDzik4wPP6AFz.png"
+                                    ],
+                                    [
+                                        "Merek" => "Nissan",
+                                        "Jenis" => "Sports Car",
+                                        "Nama" => "GTR",
+                                        "Photo" => "https://pngimg.com/d/nissan_PNG47.png"
+                                    ]
+                                ];
+
+                                foreach ($peserta as $key => $value) {
+                                    echo "<tr>";
+                                    echo "<td>" . ($key + 1) . ". </td>";
+                                    echo "<td>" . $value["Merek"] . "</td>";
+                                    echo "<td>" . $value["Jenis"] . "</td>";
+                                    echo "<td>" . $value["Nama"] . "</td>";
+                                    echo "<td><img src='" . $value["Photo"] . "' alt='' class='img-thumbnail' style='width:150px; height:85px; object-fit:cover;'></td>";
+                                    echo "</tr>";
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
         <!-- <script>
         const table = document.getElementById("countingTable");
