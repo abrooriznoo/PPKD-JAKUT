@@ -15,7 +15,8 @@ $dataFile = __DIR__ . '/../data/data.json';
 // Ambil data peserta dari file jika ada, jika tidak array kosong
 if (file_exists($dataFile)) {
     $data = json_decode(file_get_contents($dataFile), true);
-    if (!is_array($data)) $data = [];
+    if (!is_array($data))
+        $data = [];
 } else {
     $data = [];
 }
@@ -36,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $kota = $_POST['city'] ?? '';
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
+    // $password = password_hash($_POST['password'], PASSWORD_DEFAULT) ?? '';
     if ($id && $nama && $umur && $kota && $email && $password) {
         $data[] = [
             'id' => $id,
@@ -112,7 +114,7 @@ if (isset($_GET['name']) && $_GET['name'] !== '') {
                     <?php
                     $no = 1;
                     foreach ($peserta as $p) {
-                    ?>
+                        ?>
                         <tbody>
                             <tr>
                                 <td><?= $no++ ?>.</td>
@@ -129,7 +131,8 @@ if (isset($_GET['name']) && $_GET['name'] !== '') {
             </div>
 
             <!-- Modal Tambah -->
-            <div class="card-body bg-black bg-opacity-50 items-center justify-center z-20 d-none" id="tambahModal" style="position: fixed; top:0; left:0; width:100vw; height:100vh;">
+            <div class="card-body bg-black bg-opacity-50 items-center justify-center z-20 d-none" id="tambahModal"
+                style="position: fixed; top:0; left:0; width:100vw; height:100vh;">
                 <div class="bg-white rounded shadow-lg p-4 mx-auto" style="max-width: 500px; margin-top: 10vh;">
                     <form action="" method="POST">
                         <h4 class="">Form Tambah</h4>

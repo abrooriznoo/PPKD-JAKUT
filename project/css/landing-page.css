@@ -1,0 +1,116 @@
+:root {
+  --primary: #2a3439;
+  --secondary: #5c6b73;
+  --accent: #c17c74;
+  --metal: #b8b8b8;
+  --concrete: #e0e0e0;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--concrete);
+  color: var(--primary);
+  overflow-x: hidden;
+}
+
+.industrial-bg {
+  background: linear-gradient(rgba(42, 52, 57, 0.9), rgba(42, 52, 57, 0.9)),
+    url('https://images.unsplash.com/photo-1513828583688-c52646db42da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.metal-texture {
+  background: linear-gradient(
+      rgba(184, 184, 184, 0.8),
+      rgba(184, 184, 184, 0.8)
+    ),
+    url('https://images.unsplash.com/photo-1513828583688-c52646db42da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+  background-size: cover;
+  background-position: center;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hexagon {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.rust-overlay {
+  position: relative;
+}
+
+.rust-overlay::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(193, 124, 116, 0.1) 0%,
+    rgba(193, 124, 116, 0.3) 50%,
+    rgba(193, 124, 116, 0.1) 100%
+  );
+  pointer-events: none;
+}
+
+.bolt-icon {
+  position: relative;
+}
+
+.bolt-icon::before {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: var(--accent);
+  border-radius: 50%;
+  top: -4px;
+  left: -4px;
+}
+
+.bolt-icon::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: var(--metal);
+  border-radius: 50%;
+  top: -2px;
+  left: -2px;
+}
+
+.grid-pattern {
+  background-image: linear-gradient(var(--metal) 1px, transparent 1px),
+    linear-gradient(90deg, var(--metal) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pulse-animation {
+  animation: pulse 3s infinite;
+}
+
+.concrete-texture {
+  background: linear-gradient(
+      rgba(224, 224, 224, 0.9),
+      rgba(224, 224, 224, 0.9)
+    ),
+    url('https://images.unsplash.com/photo-1582731594633-91ba7b5f2225?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+  background-size: cover;
+}

@@ -1,0 +1,69 @@
+/* Custom industrial styling */
+.industrial-border {
+  border: 1px solid #3a3a3a;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.industrial-bg {
+  background-color: #2d2d2d;
+}
+
+.industrial-accent {
+  background-color: #4a5568;
+}
+
+.industrial-text {
+  color: #e2e8f0;
+}
+
+.industrial-text-secondary {
+  color: #a0aec0;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-container {
+  background-color: #2d2d2d;
+  border: 1px solid #4a5568;
+  border-radius: 0.25rem;
+  transform: translateY(-20px);
+  transition: transform 0.3s ease;
+}
+
+.modal-active {
+  opacity: 1;
+}
+
+.modal-visible {
+  transform: translateY(0);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2d2d2d;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4a5568;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #718096;
+}

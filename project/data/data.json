@@ -6,21 +6,5 @@
     "id": "1",
     "name": "Abroor Rizky",
     "password": "admin123"
-  },
-  {
-    "age": "24",
-    "city": "Bekasi, Indonesia",
-    "email": "reiji@gmail.com",
-    "id": "2",
-    "name": "Reiji",
-    "password": "admin123"
-  },
-  {
-    "age": "27",
-    "city": "Jakarta, Indonesia",
-    "email": "sandi@gmail.com",
-    "id": "3",
-    "name": "Sandi",
-    "password": "admin123"
   }
 ]
