@@ -236,7 +236,7 @@
                                 <?php
                                 $no = 1;
                                 foreach ($peserta as $p) {
-                                    ?>
+                                ?>
                                     <tbody>
                                         <tr>
                                             <td><?= $no++ ?></td>
@@ -287,7 +287,7 @@
                                     </thead>
                                     <?php
                                     foreach ($mobil as $mob):
-                                        ?>
+                                    ?>
                                         <tbody>
                                             <tr>
                                                 <td><?= $mob["Merek"] ?></td>
@@ -381,7 +381,7 @@
 
                     $peserta = $data; // Ambil semua data dari file data.php
                     $allPeserta = $peserta; // Simpan array asli untuk pencarian index
-                    
+
                     if (!empty($_GET)) {
                         $name = $_GET['name'];
                         $peserta = array_filter($peserta, function ($p) use ($name, $allPeserta) {
@@ -396,7 +396,7 @@
 
                     ?>
                     <div class="card-body" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                        <table class="table table-bordered" style="width: 100%;">
+                        <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th>No.</th>
@@ -408,7 +408,7 @@
                             <?php
                             $no = 1;
                             foreach ($peserta as $p) {
-                                ?>
+                            ?>
                                 <tbody>
                                     <tr>
                                         <td><?= $no++ ?>.</td>

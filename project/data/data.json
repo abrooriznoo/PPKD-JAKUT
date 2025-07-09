@@ -1,0 +1,26 @@
+[
+    {
+        "id": "1",
+        "name": "Abroor Rizky",
+        "age": "23",
+        "city": "Jakarta, Indonesia",
+        "email": "admin@gmail.com",
+        "password": "admin123"
+    },
+    {
+        "id": "2",
+        "name": "Reiji",
+        "age": "24",
+        "city": "Bekasi, Indonesia",
+        "email": "reiji@gmail.com",
+        "password": "admin123"
+    },
+    {
+        "id": "3",
+        "name": "Sandi",
+        "age": "27",
+        "city": "Jakarta, Indonesia",
+        "email": "sandi@gmail.com",
+        "password": "admin123"
+    }
+]

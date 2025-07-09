@@ -12,3 +12,26 @@ if ($nama == "PPKD JAKUT") {
 for ($i = 0; $i <= $umur; $i++) {
     echo "Hari ini adalah tahun ke-$i saya berdiri <br>";
 }
+
+// METHOD POST TANPA MENYIMPAN DATA
+
+// $peserta = [];
+
+// $nama = $_POST['name'] ?? '';
+// $umur = $_POST['age'] ?? '';
+// $kota = $_POST['city'] ?? '';
+
+// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+//     $peserta[] = [
+//         'name' => $nama,
+//         'age' => $umur,
+//         'city' => $kota
+//     ];
+// }
+// if (isset($_GET['name'])) {
+//     $nama = $_GET['name'];
+//     // Simulate fetching data from a database or array
+//     $peserta = array_filter($peserta, function ($p) use ($nama) {
+//         return stripos($p['name'], $nama) !== false;
+//     });
+// }

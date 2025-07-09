@@ -10,7 +10,6 @@
 </head>
 
 <body>
-
     <div class="card-body mt-3 mb-3 mx-auto"
         style="width: 80%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
         <h4 class="text-start fst-italic">Function GET</h4>
@@ -25,11 +24,11 @@
                 </form>
             </div>
             <?php
-            include "data.php";
+            include "../data.php";
 
             $peserta = $data; // Ambil semua data dari file data.php
             $allPeserta = $peserta; // Simpan array asli untuk pencarian index
-            
+
             if (!empty($_GET)) {
                 $name = $_GET['name'];
                 $peserta = array_filter($peserta, function ($p) use ($name, $allPeserta) {
@@ -56,7 +55,7 @@
                     <?php
                     $no = 1;
                     foreach ($peserta as $p) {
-                        ?>
+                    ?>
                         <tbody>
                             <tr>
                                 <td><?= $no++ ?>.</td>
