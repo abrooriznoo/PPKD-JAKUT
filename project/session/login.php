@@ -29,7 +29,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     if ($found) {
         $_SESSION["loggedin"] = true;
-        $_SESSION["name"] = $data[0]['name'] ?? 'User'; // Ambil nama dari data pertama, bisa disesuaikan
+        // Cari user yang login berdasarkan email, lalu ambil nama-nya
+        foreach ($data as $user) {
+            if ($email === $user['email']) {
+            $_SESSION["name"] = $user['name'];
+            break;
+            }
+        }
         header("Location: ../index.php");
         exit;
     } else {
@@ -45,7 +51,8 @@ $dataFile = __DIR__ . '/../data/data.json';
 // Ambil data peserta dari file jika ada, jika tidak array kosong
 if (file_exists($dataFile)) {
     $data = json_decode(file_get_contents($dataFile), true);
-    if (!is_array($data)) $data = [];
+    if (!is_array($data))
+        $data = [];
 } else {
     $data = [];
 }
@@ -93,10 +100,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
     <div class="container mt-5">
-        <div class="card mx-auto" style="width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 8px rgb(13, 114, 238);">
+        <div class="card mx-auto"
+            style="width: 500px; height: 500px; border-radius: 10px; box-shadow: 0 4px 8px rgb(13, 114, 238);">
             <h1 class="card-title text-center mt-5 mb-5">Login</h1>
-            <hr style="width: 80%; text-align: center; margin: 0 auto; border: 2px solid rgb(13, 114, 238); border-radius: 5px;">
-            <div class="card-body d-flex flex-column justify-content-center align-items-center" style="height: 100%; width: 100%;">
+            <hr
+                style="width: 80%; text-align: center; margin: 0 auto; border: 2px solid rgb(13, 114, 238); border-radius: 5px;">
+            <div class="card-body d-flex flex-column justify-content-center align-items-center"
+                style="height: 100%; width: 100%;">
                 <form action="" method="POST" style="width: 100%; max-width: 400px;">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email :</label>
@@ -116,7 +126,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <!-- MODAL REGISTRASI -->
-    <div class="card-body bg-secondary bg-opacity-75 items-center justify-center z-20 d-none" id="tambahModal" style="position: fixed; top:0; left:0; width:100vw; height:100vh;">
+    <div class="card-body bg-secondary bg-opacity-75 items-center justify-center z-20 d-none" id="tambahModal"
+        style="position: fixed; top:0; left:0; width:100vw; height:100vh;">
         <div class="bg-white rounded shadow-lg p-4 mx-auto" style="max-width: 500px; margin-top: 10vh;">
             <form action="" method="POST">
                 <h4 class="">Form Tambah</h4>
@@ -124,23 +135,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="hidden" name="id" value="<?= $newId ?>">
                 <div class="mb-3">
                     <label for="" class="mb-2">Nama :</label>
-                    <input type="text" name="name" placeholder="Nama" class="form-control mb-2"
-                        style="width: 100%;" autofocus required>
+                    <input type="text" name="name" placeholder="Nama" class="form-control mb-2" style="width: 100%;"
+                        autofocus required>
                 </div>
                 <div class="mb-3">
                     <label for="" class="mb-2">Umur :</label>
-                    <input type="number" name="age" placeholder="Umur" class="form-control mb-2"
-                        style="width: 100%;" required>
+                    <input type="number" name="age" placeholder="Umur" class="form-control mb-2" style="width: 100%;"
+                        required>
                 </div>
                 <div class="mb-3">
                     <label for="" class="mb-2">Alamat :</label>
-                    <input type="text" name="city" placeholder="Alamat" class="form-control mb-2"
-                        style="width: 100%;">
+                    <input type="text" name="city" placeholder="Alamat" class="form-control mb-2" style="width: 100%;">
                 </div>
                 <div class="mb-3">
                     <label for="" class="mb-2">Email :</label>
-                    <input type="email" name="email" placeholder="Email" class="form-control mb-2"
-                        style="width: 100%;">
+                    <input type="email" name="email" placeholder="Email" class="form-control mb-2" style="width: 100%;">
                 </div>
                 <div class="mb-3">
                     <label for="" class="mb-2">Password :</label>
