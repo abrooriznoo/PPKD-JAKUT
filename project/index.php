@@ -80,7 +80,7 @@ if (!isset($_SESSION["email"])) {
         <div id="modalContainer" class="modal-container w-full max-w-md mx-4">
             <div class="p-4 industrial-border-b">
                 <div class="flex items-center justify-between">
-                    <h3 id="modalTitle" class="text-lg font-semibold">Modal Title</h3>
+                    <h3 id="modalTitle" class="text-lg font-semibold">Form Tambah Users</h3>
                     <button onclick="closeModal()" class="text-gray-400 hover:text-white">
                         <i class="fas fa-times"></i>
                     </button>
