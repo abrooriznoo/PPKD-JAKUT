@@ -56,7 +56,7 @@ if ($userId) {
         <div class="p-4 industrial-border">
             <div class="flex items-center">
                 <div class="flex-shrink-0">
-                    <img class="h-10 w-10 rounded-full" src="assets/<?= $user["photo"]; ?>" alt="">
+                    <img class="h-10 w-10 rounded-full" src="../assets/newphoto/<?= $_SESSION['photo']; ?>" alt="">
                 </div>
                 <div class="ml-3 flex-1">
                     <p class="text-sm font-medium"><?= $_SESSION["fullname"]; ?></p>

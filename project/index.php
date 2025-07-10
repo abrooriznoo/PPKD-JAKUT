@@ -2,12 +2,165 @@
 // Cek apakah user sudah login
 session_start();
 session_regenerate_id();
+ob_flush();
 include 'database/connect.php';
 
 if (!isset($_SESSION["email"])) {
     header("Location: session/login.php");
     exit();
 }
+
+//USER CUD =================================================================================================================
+if (isset($_POST["register-users"])) {
+    $name = $_POST['name'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
+    $gender = $_POST['gender'];
+    $email = $_POST['email'];
+    $password = sha1($_POST['password']);
+
+    // Handle file upload for photo
+    if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
+        $uploadDir = __DIR__ . '/assets/newphoto/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
+
+        $ext = strtolower(pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION));
+        $allowed = ['jpg', 'jpeg', 'png', 'gif'];
+        if (!in_array($ext, $allowed)) {
+            echo "Ekstensi file tidak diizinkan.";
+            $photo = 'default.png';
+        } else {
+            $fileName = uniqid() . '.' . $ext;
+            $uploadFile = $uploadDir . $fileName;
+            if (move_uploaded_file($_FILES['photo']['tmp_name'], $uploadFile)) {
+                $photo = $fileName;
+            } else {
+                echo "Gagal menyimpan file.";
+                $photo = 'default.png';
+            }
+        }
+    } else {
+        $photo = 'default.png';
+    }
+
+    // Simpan data ke database
+    $query = mysqli_query($conn, "INSERT INTO users (name, phone, address, gender, email, password, photo) VALUES ('$name', '$phone', '$address', '$gender', '$email', '$password', '$fileName')");
+
+    if ($query) {
+        header("Location: ?page=users&register=success");
+        exit;
+    } else {
+        echo "<script>alert('Registration failed!');</script>";
+    }
+}
+
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+
+    $sqlGet = mysqli_query($conn, "SELECT * FROM users WHERE id = '$id'");
+    $result = mysqli_fetch_assoc($sqlGet);
+    // print_r($result);
+    // die;
+
+    if (!$result) {
+        die("Data tidak ditemukan!");
+    }
+}
+
+if (isset($_POST['edit-users'])) {
+    $id = $_POST['id'];
+    $name = $_POST['name'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
+    $gender = $_POST['gender'];
+    $email = $_POST['email'];
+
+    // Jika password baru diisi, gunakan password baru (hash sha1), jika tidak, gunakan password lama dari database
+    if (!empty($_POST['password'])) {
+        $password = sha1($_POST['password']);
+    } else {
+        // Ambil password lama dari database
+        $sqlGetPass = mysqli_query($conn, "SELECT password FROM users WHERE id = '$id'");
+        $passData = mysqli_fetch_assoc($sqlGetPass);
+        $password = $passData['password'];
+    }
+
+    // Ambil data user lama untuk mendapatkan nama file foto lama
+    $sqlGetOld = mysqli_query($conn, "SELECT photo FROM users WHERE id = '$id'");
+    $oldData = mysqli_fetch_assoc($sqlGetOld);
+    $oldPhoto = isset($oldData['photo']) ? $oldData['photo'] : 'default.png';
+
+    if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
+        $uploadDir = __DIR__ . '/assets/newphoto/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
+
+        $ext = strtolower(pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION));
+        $allowed = ['jpg', 'jpeg', 'png', 'gif'];
+        if (!in_array($ext, $allowed)) {
+            echo "Ekstensi file tidak diizinkan.";
+            $photo = $oldPhoto;
+        } else {
+            $fileName = uniqid() . '.' . $ext;
+            $uploadFile = $uploadDir . $fileName;
+            if (move_uploaded_file($_FILES['photo']['tmp_name'], $uploadFile)) {
+                $photo = $fileName;
+                // Hapus foto lama jika bukan default.png
+                if ($oldPhoto !== 'default.png' && file_exists($uploadDir . $oldPhoto)) {
+                    unlink($uploadDir . $oldPhoto);
+                }
+            } else {
+                echo "Gagal menyimpan file.";
+                $photo = $oldPhoto;
+            }
+        }
+    } else {
+        $photo = $oldPhoto;
+    }
+
+    $sqlUpdate = mysqli_query($conn, "UPDATE users SET name = '$name', phone = '$phone', address = '$address', gender = '$gender', email = '$email', password = '$password', photo = '$photo' WHERE id = '$id'");
+
+    if ($sqlUpdate) {
+        header("Location: ?page=users&update=success");
+    } else {
+        echo "<script>alert('Data Gagal Diupdate'); window.location.href='?page=users&update=failed';</script>";
+    }
+}
+
+if (isset($_GET['delete'])) {
+    $id = $_GET['delete'];
+
+    $sqlGetPhoto = mysqli_query($conn, "SELECT photo FROM users WHERE id = '$id'");
+    $dataPhoto = mysqli_fetch_assoc($sqlGetPhoto);
+    if ($dataPhoto && isset($dataPhoto['photo']) && $dataPhoto['photo'] !== 'default.png') {
+        $photoPath = __DIR__ . '/assets/newphoto/' . $dataPhoto['photo'];
+        if (file_exists($photoPath)) {
+            unlink($photoPath);
+        }
+    }
+
+    $sqlDelete = mysqli_query($conn, "DELETE FROM users WHERE id = '$id'");
+
+    if ($sqlDelete) {
+        header("Location: ?page=users&del=success");
+        exit;
+        // echo "<script>window.location.href='?page=users&delete=success';</script>";
+    } else {
+        echo "<script>alert('Data Gagal Dihapus'); window.location.href='?page=users&delete=failed';</script>";
+    }
+}
+
+// if (isset($_GET['success'])) :
+//     echo "<script>
+//         Swal.fire('Berhasil!', 'Registrasi berhasil dilakukan.', 'success');
+//     </script>";
+// endif;
+// =========================================================================================================================
+
+ob_end_flush();
 ?>
 
 <!DOCTYPE html>
@@ -21,6 +174,8 @@ if (!isset($_SESSION["email"])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- SweetAlert2 CSS (optional, jika ingin gunakan tema bawaan) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="css/dashboard.css">
 
 </head>
@@ -76,11 +231,11 @@ if (!isset($_SESSION["email"])) {
     </div>
 
     <!-- Reusable Modal Structure -->
-    <div id="modalOverlay" class="modal-overlay flex items-center justify-center">
-        <div id="modalContainer" class="modal-container w-full max-w-md mx-4">
+    <div id="modalOverlay" class="modal-overlay flex items-center justify-center fixed inset-0 z-50 bg-black bg-opacity-50">
+        <div id="modalContainer" class="modal-container w-full max-w-md mx-4" style="max-height: 80vh; overflow-y: auto;">
             <div class="p-4 industrial-border-b">
                 <div class="flex items-center justify-between">
-                    <h3 id="modalTitle" class="text-lg font-semibold">Form Tambah Users</h3>
+                    <h3 id="modalTitle" class="text-lg font-semibold">Modal Title</h3>
                     <button onclick="closeModal()" class="text-gray-400 hover:text-white">
                         <i class="fas fa-times"></i>
                     </button>
@@ -89,11 +244,11 @@ if (!isset($_SESSION["email"])) {
             <div id="modalContent" class="p-4">
                 <!-- Dynamic content will be inserted here -->
             </div>
-            <div class="p-4 industrial-border-t flex justify-end space-x-3">
-                <button onclick="closeModal()" class="px-4 py-2 industrial-accent hover:bg-gray-600 rounded">
+            <div>
+                <button onclick="closeModal()" class="px-4 py-2 industrial-accent hover:bg-gray-600 rounded" hidden>
                     Cancel
                 </button>
-                <button id="modalAction" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded">
+                <button id="modalAction" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded" hidden>
                     Confirm
                 </button>
             </div>
@@ -140,6 +295,7 @@ if (!isset($_SESSION["email"])) {
     </div>
 
     <script src="js/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

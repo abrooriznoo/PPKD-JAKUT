@@ -67,3 +67,65 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #718096;
 }
+
+/* Fade and scale transitions for modal */
+/* Modal background overlay fade in/out */
+[id^="modalEdit"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 999;
+  pointer-events: none;
+  /* Hanya overlay, bukan modal */
+}
+
+[id^="modalEdit"].opacity-100::before {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+[id^="modalEdit"].opacity-0::before {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Modal container tidak ikut background overlay */
+[id^="modalEdit"] > div {
+  position: relative;
+  z-index: 1000;
+  transition: opacity 0.3s, transform 0.3s;
+  transform: translateY(-20px); /* Slide from top */
+}
+
+[id^="modalEdit"] > div.opacity-100.scale-100 {
+  transform: translateY(0) !important;
+}
+
+[id^="modalEdit"] > div.opacity-0.scale-95 {
+  transform: translateY(-20px) !important; /* Slide to top */
+}
+
+/* Hilangkan transition di root modal */
+[id^="modalEdit"] {
+  transition: none;
+}
+
+[id^="modalEdit"].opacity-100 {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+[id^="modalEdit"].opacity-0 {
+  opacity: 1 !important; /* Tetap visible, hanya slide */
+  pointer-events: none !important;
+}
+
+@media (max-width: 640px) {
+  [id^="modalEdit"] > div {
+    max-width: 95vw;
+    padding: 1.5rem 0.5rem;
+  }
+}

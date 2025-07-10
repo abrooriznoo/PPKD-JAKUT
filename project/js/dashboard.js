@@ -13,6 +13,19 @@ function openModal(modalType, options = {}) {
     return;
   }
 
+  const templateName = template.getAttribute("name") || template.id;
+
+  if (!options.title) {
+    // Convert templateName (e.g., "confirmModalTemplate") to a readable title
+    const name = templateName.replace(/Template$/, "");
+    // Split camelCase or PascalCase to words and capitalize
+    const readable = name
+      .replace(/([A-Z])/g, " $1")
+      .replace(/^./, (str) => str.toUpperCase())
+      .trim();
+    options.title = readable;
+  }
+
   // Clone the template content
   const content = template.cloneNode(true);
 
@@ -22,7 +35,7 @@ function openModal(modalType, options = {}) {
 
   // Set modal title and action button text based on options or defaults
   modalTitle.textContent = options.title || "Modal Title";
-  modalAction.textContent = options.actionText || "OK";
+  // modalAction.textContent = options.actionText || "OK";
   modalAction.textContent = options.actionText || "Confirm";
 
   // If this is a confirmation modal, set the message
@@ -78,5 +91,52 @@ function showConfirmation() {
 document.getElementById("modalOverlay").addEventListener("click", function (e) {
   if (e.target === this) {
     closeModal();
+  }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("register") === "success") {
+    Swal.fire({
+      title: "Berhasil!",
+      text: "Akun Anda berhasil didaftarkan.",
+      icon: "success",
+      confirmButtonText: "OK",
+    }).then(() => {
+      params.delete("register");
+      const newUrl =
+        window.location.pathname +
+        (params.toString() ? "?" + params.toString() : "") +
+        window.location.hash;
+      window.history.replaceState({}, "", newUrl);
+    });
+  } else if (params.get("update") === "success") {
+    Swal.fire({
+      title: "Berhasil!",
+      text: "Data Anda berhasil diperbarui.",
+      icon: "success",
+      confirmButtonText: "OK",
+    }).then(() => {
+      params.delete("update");
+      const newUrl =
+        window.location.pathname +
+        (params.toString() ? "?" + params.toString() : "") +
+        window.location.hash;
+      window.history.replaceState({}, "", newUrl);
+    });
+  } else if (params.get("del") === "success") {
+    Swal.fire({
+      title: "Berhasil!",
+      text: "Data Anda berhasil dihapus.",
+      icon: "success",
+      confirmButtonText: "OK",
+    }).then(() => {
+      params.delete("del");
+      const newUrl =
+        window.location.pathname +
+        (params.toString() ? "?" + params.toString() : "") +
+        window.location.hash;
+      window.history.replaceState({}, "", newUrl);
+    });
   }
 });

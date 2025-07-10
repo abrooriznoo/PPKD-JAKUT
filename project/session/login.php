@@ -97,6 +97,7 @@ if (isset($_POST['login'])) {
     if (mysqli_num_rows($query) > 0) {
         $_SESSION['email'] = $email;
         $_SESSION['fullname'] = $rows['name'];
+        $_SESSION['photo'] = $rows['photo'];
         header("Location: ../index.php?login=succeed");
     } else {
         echo "<script>alert('EMAIL DAN PASSWORD SALAH!')</script>";
@@ -104,26 +105,26 @@ if (isset($_POST['login'])) {
     }
 }
 
-if (isset($_POST["register"])) {
-    $name = $_POST['name'];
-    $phone = $_POST['phone'];
-    $address = $_POST['address'];
-    $gender = $_POST['gender'];
-    $email = $_POST['email'];
-    $password = sha1($_POST['password']);
-    $photo = $_POST['photo'] ?? 'default.png';
+// if (isset($_POST["register"])) {
+//     $name = $_POST['name'];
+//     $phone = $_POST['phone'];
+//     $address = $_POST['address'];
+//     $gender = $_POST['gender'];
+//     $email = $_POST['email'];
+//     $password = sha1($_POST['password']);
+//     $photo = $_POST['photo'] ?? 'default.png';
 
-    // Simpan data ke database
-    $query = mysqli_query($conn, "INSERT INTO users (name, phone, address, gender, email, password, photo) VALUES ('$name', '$phone', '$address', '$gender', '$email', '$password', '$photo')");
+//     // Simpan data ke database
+//     $query = mysqli_query($conn, "INSERT INTO users (name, phone, address, gender, email, password, photo) VALUES ('$name', '$phone', '$address', '$gender', '$email', '$password', '$photo')");
 
 
-    if ($query) {
-        echo "<script>alert('Registration successful!');</script>";
-        header("Location: login.php");
-    } else {
-        echo "<script>alert('Registration failed!');</script>";
-    }
-}
+//     if ($query) {
+//         echo "<script>alert('Registration successful!');</script>";
+//         header("Location: login.php");
+//     } else {
+//         echo "<script>alert('Registration failed!');</script>";
+//     }
+// }
 
 ?>
 
@@ -166,7 +167,7 @@ if (isset($_POST["register"])) {
     </div>
 
     <!-- MODAL REGISTRASI -->
-    <div class="card-body bg-secondary bg-opacity-75 items-center justify-center z-20 d-none" id="tambahModal"
+    <!-- <div class="card-body bg-secondary bg-opacity-75 items-center justify-center z-20 d-none" id="tambahModal"
         style="position: fixed; top:0; left:0; width:100vw; height:100vh;">
         <div class="bg-white rounded shadow-lg p-4 mx-auto" style="max-width: 500px; margin-top: 10vh;">
             <form action="" method="POST">
@@ -197,10 +198,6 @@ if (isset($_POST["register"])) {
                             <input type="radio" name="gender" value="Perempuan"> Perempuan
                         </label>
                     </div>
-                    <!-- <select name="gender" id="">
-                        <option value="Laki-Laki">Laki-Laki</option>
-                        <option value="Perempuan">Perempuan</option>
-                    </select> -->
                 </div>
                 <div class="mb-3">
                     <label for="" class="mb-2">Email :</label>
@@ -222,9 +219,9 @@ if (isset($_POST["register"])) {
                 </div>
             </form>
         </div>
-    </div>
+    </div> -->
 
-    <script>
+    <!-- <script>
         const modalDetails = document.querySelector("#tambahModal");
         const btnTambah = document.getElementById("modal-tambah");
         const closeDetails = document.getElementById("closed-modal");
@@ -240,7 +237,7 @@ if (isset($_POST["register"])) {
             modalDetail.classList.remove("hidden");
             modalDetail.classList.add("d-none");
         });
-    </script>
+    </script> -->
 </body>
 
 </html>
