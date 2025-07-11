@@ -16,7 +16,7 @@ $result = mysqli_fetch_all($sqlReq, MYSQLI_ASSOC);
             })">Tambah Users</button>
         </div>
         <div class="overflow-x-auto">
-            <table class="min-w-[1200px] w-full border border-gray-200 rounded-lg"> <!-- min-w dan w-full -->
+            <table class="w-full"> <!-- min-w dan w-full -->
                 <thead>
                     <tr class="bg-gray-600 text-white">
                         <th class="py-3 px-4 text-left">No.</th>
@@ -33,7 +33,7 @@ $result = mysqli_fetch_all($sqlReq, MYSQLI_ASSOC);
                     <?php
                     $no = 1;
                     foreach ($result as $user):
-                    ?>
+                        ?>
                         <tr class="border-b"> <!-- hover:bg-gray-50 transition-colors dihapus -->
                             <td class="py-2 px-4 text-white"><?= $no++ ?>.</td>
                             <td class="py-2 px-4 text-white"><?= $user["name"]; ?></td>
@@ -48,7 +48,8 @@ $result = mysqli_fetch_all($sqlReq, MYSQLI_ASSOC);
                             <td class="py-2 px-4 text-white">
                                 <div class="flex gap-2">
                                     <a href="javascript:void(0);"
-                                        class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded shadow text-sm transition-colors duration-200" data-bs-toggle="modal" data-bs-target="#modalEdit<?= $user['id'] ?>">
+                                        class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded shadow text-sm transition-colors duration-200"
+                                        data-bs-toggle="modal" data-bs-target="#modalEdit<?= $user['id'] ?>">
                                         <i class="fas fa-edit mr-1"></i>Edit
                                     </a>
                                     <a href="?page=users&delete=<?= $user['id'] ?>"
@@ -59,76 +60,92 @@ $result = mysqli_fetch_all($sqlReq, MYSQLI_ASSOC);
                                 </div>
                             </td>
                         </tr>
-                </tbody>
+                    </tbody>
 
 
-                <!-- MODAL EDIT -->
-                <!-- Edit User Modal Template (Tanpa ID Khusus) -->
-                <div class="fixed inset-0 flex items-center justify-center bg-gray bg-opacity-70 z-50 transition-opacity duration-300 opacity-0 pointer-events-none" id="modalEdit<?= $user['id'] ?>">
-                    <div class="bg-dark rounded p-4 shadow-lg w-full max-w-md relative transform scale-95 transition-all duration-300 opacity-0" style="max-height: 80vh; overflow-y: auto;">
-                        <h2 class="text-2xl font-semibold text-white mb-4">Edit User</h2>
-                        <hr class="border-gray-600 mb-4">
-                        <button type="button" class="close-modal-btn absolute top-2 right-2 text-gray-400 hover:text-white" onclick="closeEditModal('modalEdit<?= $user['id'] ?>')">
-                            <i class="fas fa-times"></i>
-                        </button>
-                        <form action="" method="post" enctype="multipart/form-data">
-                            <input type="text" name="id" value="<?= $user['id'] ?>" hidden>
-                            <div class="space-y-4">
-                                <div>
-                                    <label class="block text-sm font-medium mb-1">Nama :</label>
-                                    <input type="text" class="w-full industrial-accent rounded p-2 text-sm"
-                                        placeholder="Enter username" name="name" value="<?= $user['name'] ?>" required>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium mb-1">Nomor HP :</label>
-                                    <input type="text" class="w-full industrial-accent rounded p-2 text-sm"
-                                        placeholder="Enter phone number" name="phone" value="<?= $user['phone'] ?>" required>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium mb-1">Alamat :</label>
-                                    <textarea name="address" class="w-full industrial-accent rounded p-2 text-sm" rows="3" placeholder="Enter address" required><?= $user['address'] ?></textarea>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium mb-1">Jenis Kelamin :</label>
-                                    <div class="flex flex-col sm:flex-row gap-4">
-                                        <label class="inline-flex items-center">
-                                            <input type="radio" class="form-radio text-amber-500" name="gender" value="Laki-Laki" <?= $user['gender'] == 'Laki-Laki' ? 'checked' : '' ?> required>
-                                            <span class="ml-2 text-white">Laki-laki</span>
-                                        </label>
-                                        <label class="inline-flex items-center">
-                                            <input type="radio" class="form-radio text-amber-500" name="gender" value="Perempuan" <?= $user['gender'] == 'Perempuan' ? 'checked' : '' ?>>
-                                            <span class="ml-2 text-white">Perempuan</span>
-                                        </label>
+                    <!-- MODAL EDIT -->
+                    <!-- Edit User Modal Template (Tanpa ID Khusus) -->
+                    <div class="fixed inset-0 flex items-center justify-center bg-gray bg-opacity-70 z-50 transition-opacity duration-300 opacity-0 pointer-events-none"
+                        id="modalEdit<?= $user['id'] ?>">
+                        <div class="bg-dark rounded p-4 shadow-lg w-full max-w-md relative transform scale-95 transition-all duration-300 opacity-0"
+                            style="max-height: 80vh; overflow-y: auto;">
+                            <h2 class="text-2xl font-semibold text-white mb-4">Edit User</h2>
+                            <hr class="border-gray-600 mb-4">
+                            <button type="button"
+                                class="close-modal-btn absolute top-2 right-2 text-gray-400 hover:text-white"
+                                onclick="closeEditModal('modalEdit<?= $user['id'] ?>')">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <form action="" method="post" enctype="multipart/form-data">
+                                <input type="text" name="id" value="<?= $user['id'] ?>" hidden>
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium mb-1">Nama :</label>
+                                        <input type="text" class="w-full industrial-accent rounded p-2 text-sm"
+                                            placeholder="Enter username" name="name" value="<?= $user['name'] ?>" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium mb-1">Nomor HP :</label>
+                                        <input type="text" class="w-full industrial-accent rounded p-2 text-sm"
+                                            placeholder="Enter phone number" name="phone" value="<?= $user['phone'] ?>"
+                                            required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium mb-1">Alamat :</label>
+                                        <textarea name="address" class="w-full industrial-accent rounded p-2 text-sm"
+                                            rows="3" placeholder="Enter address" required><?= $user['address'] ?></textarea>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium mb-1">Jenis Kelamin :</label>
+                                        <div class="flex flex-col sm:flex-row gap-4">
+                                            <label class="inline-flex items-center">
+                                                <input type="radio" class="form-radio text-amber-500" name="gender"
+                                                    value="Laki-Laki" <?= $user['gender'] == 'Laki-Laki' ? 'checked' : '' ?>
+                                                    required>
+                                                <span class="ml-2 text-white">Laki-laki</span>
+                                            </label>
+                                            <label class="inline-flex items-center">
+                                                <input type="radio" class="form-radio text-amber-500" name="gender"
+                                                    value="Perempuan" <?= $user['gender'] == 'Perempuan' ? 'checked' : '' ?>>
+                                                <span class="ml-2 text-white">Perempuan</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium mb-1">Email :</label>
+                                        <input type="email" class="w-full industrial-accent rounded p-2 text-sm"
+                                            placeholder="Enter email" name="email" value="<?= $user['email'] ?>" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium mb-1">Password :</label>
+                                        <input type="password" class="w-full industrial-accent rounded p-2 text-sm"
+                                            name="password" placeholder="Enter password">
+                                        <small class="text-gray-400">Kosongkan jika tidak ingin mengubah password</small>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium mb-1">Photo Profile :</label>
+                                        <input type="file" class="w-full industrial-accent rounded p-2 text-sm" name="photo"
+                                            placeholder="Insert Photos">
+                                        <?php if (!empty($user['photo'])): ?>
+                                            <img src="assets/newphoto/<?= $user['photo'] ?>" alt="User Photo"
+                                                class="w-12 h-12 object-cover rounded-full mt-2">
+                                        <?php endif; ?>
                                     </div>
                                 </div>
-                                <div>
-                                    <label class="block text-sm font-medium mb-1">Email :</label>
-                                    <input type="email" class="w-full industrial-accent rounded p-2 text-sm"
-                                        placeholder="Enter email" name="email" value="<?= $user['email'] ?>" required>
+                                <div class="flex flex-col sm:flex-row justify-end mt-6 gap-2">
+                                    <button type="submit"
+                                        class="px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded shadow transition-colors duration-200"
+                                        name="edit-users">
+                                        <i class="fas fa-save mr-2"></i>Simpan Perubahan
+                                    </button>
+                                    <button type="button"
+                                        class="close-modal-btn px-4 py-2 industrial-accent hover:bg-gray-600 rounded"
+                                        onclick="closeEditModal('modalEdit<?= $user['id'] ?>')">
+                                        Cancel
+                                    </button>
                                 </div>
-                                <div>
-                                    <label class="block text-sm font-medium mb-1">Password :</label>
-                                    <input type="password" class="w-full industrial-accent rounded p-2 text-sm" name="password" placeholder="Enter password">
-                                    <small class="text-gray-400">Kosongkan jika tidak ingin mengubah password</small>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium mb-1">Photo Profile :</label>
-                                    <input type="file" class="w-full industrial-accent rounded p-2 text-sm" name="photo" placeholder="Insert Photos">
-                                    <?php if (!empty($user['photo'])): ?>
-                                        <img src="assets/newphoto/<?= $user['photo'] ?>" alt="User Photo" class="w-12 h-12 object-cover rounded-full mt-2">
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                            <div class="flex flex-col sm:flex-row justify-end mt-6 gap-2">
-                                <button type="submit" class="px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded shadow transition-colors duration-200" name="edit-users">
-                                    <i class="fas fa-save mr-2"></i>Simpan Perubahan
-                                </button>
-                                <button type="button" class="close-modal-btn px-4 py-2 industrial-accent hover:bg-gray-600 rounded" onclick="closeEditModal('modalEdit<?= $user['id'] ?>')">
-                                    Cancel
-                                </button>
-                            </div>
-                        </form>
-                    <?php endforeach; ?>
+                            </form>
+                        <?php endforeach; ?>
             </table>
         </div>
     </div>
@@ -142,8 +159,8 @@ $result = mysqli_fetch_all($sqlReq, MYSQLI_ASSOC);
             <div class="space-y-4">
                 <div>
                     <label class="block text-sm font-medium mb-1">Nama :</label>
-                    <input type="text" class="w-full industrial-accent rounded p-2 text-sm"
-                        placeholder="Enter username" name="name" required>
+                    <input type="text" class="w-full industrial-accent rounded p-2 text-sm" placeholder="Enter username"
+                        name="name" required>
                 </div>
                 <div>
                     <label class="block text-sm font-medium mb-1">Nomor HP :</label>
@@ -152,13 +169,15 @@ $result = mysqli_fetch_all($sqlReq, MYSQLI_ASSOC);
                 </div>
                 <div>
                     <label class="block text-sm font-medium mb-1">Alamat :</label>
-                    <textarea name="address" class="w-full industrial-accent rounded p-2 text-sm" id="address" rows="3" placeholder="Enter address" required></textarea>
+                    <textarea name="address" class="w-full industrial-accent rounded p-2 text-sm" id="address" rows="3"
+                        placeholder="Enter address" required></textarea>
                 </div>
                 <div>
                     <label class="block text-sm font-medium mb-1">Jenis Kelamin :</label>
                     <div class="flex gap-4">
                         <label class="inline-flex items-center">
-                            <input type="radio" class="form-radio text-amber-500" name="gender" value="Laki-Laki" required>
+                            <input type="radio" class="form-radio text-amber-500" name="gender" value="Laki-Laki"
+                                required>
                             <span class="ml-2 text-white">Laki-laki</span>
                         </label>
                         <label class="inline-flex items-center">
@@ -184,7 +203,9 @@ $result = mysqli_fetch_all($sqlReq, MYSQLI_ASSOC);
                 </div>
             </div>
             <div class="flex justify-end mt-6 gap-2">
-                <button type="submit" class="px-6 py-2 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded shadow transition-colors duration-200" name="register-users">
+                <button type="submit"
+                    class="px-6 py-2 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded shadow transition-colors duration-200"
+                    name="register-users">
                     <i class="fas fa-user-plus mr-2"></i>Tambah Users
                 </button>
                 <button onclick="closeModal()" class="px-4 py-2 industrial-accent hover:bg-gray-600 rounded">
@@ -229,14 +250,14 @@ $result = mysqli_fetch_all($sqlReq, MYSQLI_ASSOC);
     }
     // Auto open modal if triggered by data-bs-toggle (for backward compatibility)
     document.querySelectorAll('[data-bs-toggle="modal"]').forEach(btn => {
-        btn.addEventListener('click', function() {
+        btn.addEventListener('click', function () {
             const target = btn.getAttribute('data-bs-target').replace('#', '');
             openEditModal(target);
         });
     });
     // Close modal on background click
     document.querySelectorAll('[id^="modalEdit"]').forEach(modal => {
-        modal.addEventListener('click', function(e) {
+        modal.addEventListener('click', function (e) {
             if (e.target === modal) closeEditModal(modal.id);
         });
     });
