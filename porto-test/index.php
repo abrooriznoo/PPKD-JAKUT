@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Interactive Portfolio</title>
+    <title>Λ . Я | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
@@ -21,15 +21,15 @@
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
-                        <span class="text-2xl font-bold gradient-text">Portfolio</span>
+                        <span class="text-2xl font-bold gradient-text">Λ . Я | Portfolio</span>
                     </div>
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
                         <a href="#home" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Home</a>
                         <a href="#about" class="nav-link px-3 py-2 rounded-md text-sm font-medium">About</a>
-                        <a href="#projects" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Projects</a>
                         <a href="#skills" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Skills</a>
+                        <a href="#projects" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Projects</a>
                         <a href="#contact" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Contact</a>
                     </div>
                 </div>
@@ -49,8 +49,8 @@
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium">Home</a>
                 <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium">About</a>
-                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium">Projects</a>
                 <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium">Skills</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium">Projects</a>
                 <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium">Contact</a>
             </div>
         </div>
@@ -62,9 +62,10 @@
         <div class="text-center px-4 z-10">
             <h1 class="text-5xl md:text-7xl font-bold mb-6">
                 <span class="gradient-text">Hi, I'm</span>
-                <span class="text-white">Alex</span>
+                <span class="text-white">Abroor Rizky</span>
             </h1>
-            <h2 class="text-2xl md:text-3xl font-semibold mb-8 text-gray-300">Creative Developer & Designer</h2>
+            <h2 class="text-2xl md:text-3xl font-semibold mb-8 text-gray-300">Creative Fullstack Developer & Designer
+            </h2>
             <div class="flex justify-center space-x-4">
                 <a href="#projects"
                     class="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full font-medium hover:opacity-90 transition duration-300">
