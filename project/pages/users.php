@@ -146,6 +146,8 @@ $result = mysqli_fetch_all($sqlReq, MYSQLI_ASSOC);
                                 </div>
                             </form>
                         <?php endforeach; ?>
+                    </div>
+                </div>
             </table>
         </div>
     </div>
@@ -164,7 +166,7 @@ $result = mysqli_fetch_all($sqlReq, MYSQLI_ASSOC);
                 </div>
                 <div>
                     <label class="block text-sm font-medium mb-1">Nomor HP :</label>
-                    <input type="text" class="w-full industrial-accent rounded p-2 text-sm"
+                    <input type="number" class="w-full industrial-accent rounded p-2 text-sm"
                         placeholder="Enter phone number" name="phone" required>
                 </div>
                 <div>

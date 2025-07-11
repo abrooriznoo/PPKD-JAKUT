@@ -10,14 +10,32 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm industrial-text-secondary">Total Users</p>
-                    <p class="text-2xl font-bold">1,254</p>
+                    <?php
+                    // Koneksi ke database (ganti sesuai konfigurasi Anda)
+                    $conn = new mysqli("localhost", "root", "", "ppkd");
+
+                    // Cek koneksi
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
+
+                    // Query hitung total users
+                    $result = $conn->query("SELECT COUNT(*) as total FROM users");
+                    $row = $result->fetch_assoc();
+                    $total_users = $row['total'];
+
+                    echo '<p class="text-2xl font-bold">' . number_format($total_users) . '</p>';
+
+                    // Tutup koneksi
+                    $conn->close();
+                    ?>
                 </div>
                 <div class="p-3 rounded-full bg-gray-700">
                     <i class="fas fa-users text-xl"></i>
                 </div>
             </div>
             <div class="mt-2">
-                <span class="text-green-500 text-sm">+12% from last month</span>
+                <span class="text-green-500 text-sm">+<?= $total_users ?> from last month</span>
             </div>
         </div>
 
