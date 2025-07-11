@@ -147,7 +147,6 @@ if (isset($_GET['delete'])) {
     if ($sqlDelete) {
         header("Location: ?page=users&del=success");
         exit;
-        // echo "<script>window.location.href='?page=users&delete=success';</script>";
     } else {
         echo "<script>alert('Data Gagal Dihapus'); window.location.href='?page=users&delete=failed';</script>";
     }
@@ -231,8 +230,10 @@ ob_end_flush();
     </div>
 
     <!-- Reusable Modal Structure -->
-    <div id="modalOverlay" class="modal-overlay flex items-center justify-center fixed inset-0 z-50 bg-black bg-opacity-50">
-        <div id="modalContainer" class="modal-container w-full max-w-md mx-4" style="max-height: 80vh; overflow-y: auto;">
+    <div id="modalOverlay"
+        class="modal-overlay flex items-center justify-center fixed inset-0 z-50 bg-black bg-opacity-50">
+        <div id="modalContainer" class="modal-container w-full max-w-md mx-4"
+            style="max-height: 80vh; overflow-y: auto;">
             <div class="p-4 industrial-border-b">
                 <div class="flex items-center justify-between">
                     <h3 id="modalTitle" class="text-lg font-semibold">Modal Title</h3>
@@ -240,6 +241,9 @@ ob_end_flush();
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
+            </div>
+            <div class="flex justify-center">
+                <hr class="border-gray-600 mb-4" style="width: 90%;">
             </div>
             <div id="modalContent" class="p-4">
                 <!-- Dynamic content will be inserted here -->

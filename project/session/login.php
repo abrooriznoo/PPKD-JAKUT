@@ -97,7 +97,7 @@ if (isset($_POST['login'])) {
     if (mysqli_num_rows($query) > 0) {
         $_SESSION['email'] = $email;
         $_SESSION['fullname'] = $rows['name'];
-        $_SESSION['photo'] = $rows['photos'];
+        $_SESSION['photos'] = $rows['photo'];
         header("Location: ../index.php?login=success");
         exit;
     } else {

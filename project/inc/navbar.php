@@ -2,10 +2,8 @@
 require_once 'database/connect.php'; // pastikan file ini berisi koneksi ke database
 
 // Ambil user id dari session
-$userId = $_SESSION['user_id'] ?? null;
-$user = [
-    "photo" => "default.png"
-];
+$userId = $_SESSION['email'] ?? null;
+$photo = $_SESSION['photos'] ?? 'default.png';
 
 if ($userId) {
     $stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
@@ -56,7 +54,7 @@ if ($userId) {
         <div class="p-4 industrial-border">
             <div class="flex items-center">
                 <div class="flex-shrink-0">
-                    <img class="h-10 w-10 rounded-full" src="assets/newphoto/<?= $_SESSION['photo']; ?>" alt="">
+                    <img class="h-10 w-10 rounded-full" src="assets/newphoto/<?= $photo; ?>" alt="">
                 </div>
                 <div class="ml-3 flex-1">
                     <p class="text-sm font-medium"><?= $_SESSION["fullname"]; ?></p>

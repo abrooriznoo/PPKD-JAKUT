@@ -69,7 +69,7 @@ $result = mysqli_fetch_all($sqlReq, MYSQLI_ASSOC);
                         id="modalEdit<?= $user['id'] ?>">
                         <div class="bg-dark rounded p-4 shadow-lg w-full max-w-md relative transform scale-95 transition-all duration-300 opacity-0"
                             style="max-height: 80vh; overflow-y: auto;">
-                            <h2 class="text-2xl font-semibold text-white mb-4">Edit User</h2>
+                            <h2 class="text-lg font-semibold text-white mb-4">Edit User</h2>
                             <hr class="border-gray-600 mb-4">
                             <button type="button"
                                 class="close-modal-btn absolute top-2 right-2 text-gray-400 hover:text-white"
