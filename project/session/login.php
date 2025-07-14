@@ -179,7 +179,7 @@ if (isset($_POST["register-users"])) {
                         <label for="email" class="block text-sm font-medium text-amber-300 mb-2">Email :</label>
                         <input type="email"
                             class="block w-full rounded-lg border border-gray-600 bg-gray-900 text-amber-100 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500 transition"
-                            id="email" name="email" required autocomplete="username">
+                            id="email" name="email" required autocomplete="username" autofocus>
                     </div>
                     <div class="mb-6">
                         <label for="password" class="block text-sm font-medium text-amber-300 mb-2">Password :</label>
