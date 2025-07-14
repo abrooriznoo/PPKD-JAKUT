@@ -1,16 +1,14 @@
-<?php
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Nexus Dashboard</title>
+    <title>Λ . Я | Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
     <style>
         :root {
             --glass-bg: rgba(255, 255, 255, 0.15);
@@ -76,7 +74,6 @@
 
         <!-- Title -->
         <h2 class="text-2xl font-bold glow-text">Welcome to Dashboard Admin</h2>
-        <p class="text-sm opacity-75 mb-4">Please log in to continue</p>
 
         <!-- Form -->
         <form action="../controller/SessionsController.php" method="POST" class="space-y-4 text-left">
@@ -108,8 +105,32 @@
         </form>
 
         <!-- Footer -->
-        <p class="text-xs opacity-50 mt-4">© 2025 Nexus Technologies</p>
+        <p class="text-xs opacity-50 mt-4">© 2025 | Λ . Я</p>
     </div>
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const params = new URLSearchParams(window.location.search)
+        if (params.get('login') === 'error') {
+            Swal.fire({
+                title: 'Login Error!',
+                text: 'Email atau password salah.',
+                icon: 'error',
+                confirmButtonText: 'OK',
+                timer: 3000,
+                timerProgressBar: true,
+            }).then(() => {
+                params.delete('login')
+                const newUrl =
+                    window.location.pathname +
+                    (params.toString() ? '?' + params.toString() : '') +
+                    window.location.hash
+                window.history.replaceState({}, '', newUrl)
+            })
+        }
+    })
+</script>
 
 </html>

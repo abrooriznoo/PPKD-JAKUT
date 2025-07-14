@@ -17,7 +17,7 @@ if (isset($_POST['login'])) {
         header("Location: ../../index.php?login=success");
         exit;
     } else {
-        header("Location: login.php?login=error");
+        header("Location: ../session/login.php?login=error");
         exit;
     }
 }
@@ -28,5 +28,3 @@ if (isset($_POST['logout'])) {
     header("Location: ../../index.php?logout=success");
     exit;
 }
-
-?>
