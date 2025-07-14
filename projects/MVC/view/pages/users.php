@@ -75,7 +75,8 @@
                     <label class="block mb-1 font-medium">Photo</label>
                     <input type="file" name="photo" accept="image/*"
                         class="w-full neumorphic-btn px-3 py-2 rounded-lg bg-blue-100 text-gray-600"
-                        onchange="previewPhotoEdit(event, <?= $user['id'] ?>)">
+                        onchange="previewPhotoEdit(event, <?= $user['id'] ?>); validateFileSize(event, <?= $user['id'] ?>)">
+                    <small class="text-red-500" id="photoSizeError" style="display:none;">Ukuran file maksimal 1MB.</small>
                 </div>
                 <div>
                     <label class="block mb-1 font-medium">Name :</label>
@@ -159,7 +160,8 @@
                 <label class="block mb-1 font-medium">Photo</label>
                 <input type="file" name="photo" accept="image/*"
                     class="w-full neumorphic-btn px-3 py-2 rounded-lg bg-blue-100 text-gray-600" required
-                    onchange="previewPhoto(event)">
+                    onchange="previewPhoto(event); validateFileSize(this)">
+                <small class="text-red-500" id="photoSizeError" style="display:none;">Ukuran file maksimal 1MB.</small>
             </div>
             <div>
                 <label class="block mb-1 font-medium">Name :</label>
@@ -238,5 +240,16 @@
                     encodeURIComponent(userId)
             }
         })
+    }
+
+    function validateFileSize(input) {
+        const file = input.files[0];
+        const errorMsg = document.getElementById('photoSizeError');
+        if (file && file.size > 1048576) { // 1MB = 1048576 bytes
+            errorMsg.style.display = 'block';
+            input.value = '';
+        } else {
+            errorMsg.style.display = 'none';
+        }
     }
 </script>

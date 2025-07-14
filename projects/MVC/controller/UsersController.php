@@ -27,6 +27,19 @@ if (isset($_POST["register-users"])) {
 
     // Handle file upload for photo
     if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
+        $maxSize = 1 * 1024 * 1024; // 1 MB
+        if ($_FILES['photo']['size'] > $maxSize) {
+            echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ukuran file terlalu besar!',
+                    text: 'Maksimal ukuran foto adalah 1 MB.',
+                    confirmButtonColor: '#d33'
+                }).then(() => { window.location.href='../../index.php?page=users&register=failed'; });
+            </script>";
+            exit;
+        }
+
         $uploadDir = __DIR__ . '../../../assets/newphoto/';
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0777, true);
@@ -35,16 +48,32 @@ if (isset($_POST["register-users"])) {
         $ext = strtolower(pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION));
         $allowed = ['jpg', 'jpeg', 'png', 'gif'];
         if (!in_array($ext, $allowed)) {
-            echo "Ekstensi file tidak diizinkan.";
+            echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ekstensi file tidak diizinkan!',
+                    text: 'Hanya file JPG, JPEG, PNG, dan GIF yang diperbolehkan.',
+                    confirmButtonColor: '#d33'
+                }).then(() => { window.location.href='../../index.php?page=users&register=failed'; });
+            </script>";
             $photo = 'default.png';
+            exit;
         } else {
             $fileName = uniqid() . '.' . $ext;
             $uploadFile = $uploadDir . $fileName;
             if (move_uploaded_file($_FILES['photo']['tmp_name'], $uploadFile)) {
                 $photo = $fileName;
             } else {
-                echo "Gagal menyimpan file.";
+                echo "<script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal menyimpan file!',
+                        text: 'Terjadi kesalahan saat upload foto.',
+                        confirmButtonColor: '#d33'
+                    }).then(() => { window.location.href='../../index.php?page=users&register=failed'; });
+                </script>";
                 $photo = 'default.png';
+                exit;
             }
         }
     } else {
@@ -99,6 +128,20 @@ if (isset($_POST['edit-users'])) {
     $oldPhoto = isset($oldData['photo']) ? $oldData['photo'] : 'default.png';
 
     if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
+        $maxSize = 1 * 1024 * 1024; // 1 MB
+        if ($_FILES['photo']['size'] > $maxSize) {
+            echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ukuran file terlalu besar!',
+                    text: 'Maksimal ukuran foto adalah 1 MB.',
+                    confirmButtonColor: '#d33'
+                }).then(() => { window.location.href='../../index.php?page=users&update=failed'; });
+            </script>";
+            $photo = $oldPhoto;
+            exit;
+        }
+
         $uploadDir = __DIR__ . '../../../assets/newphoto/';
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0777, true);
@@ -107,8 +150,16 @@ if (isset($_POST['edit-users'])) {
         $ext = strtolower(pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION));
         $allowed = ['jpg', 'jpeg', 'png', 'gif'];
         if (!in_array($ext, $allowed)) {
-            echo "Ekstensi file tidak diizinkan.";
+            echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ekstensi file tidak diizinkan!',
+                    text: 'Hanya file JPG, JPEG, PNG, dan GIF yang diperbolehkan.',
+                    confirmButtonColor: '#d33'
+                }).then(() => { window.location.href='../../index.php?page=users&update=failed'; });
+            </script>";
             $photo = $oldPhoto;
+            exit;
         } else {
             $fileName = uniqid() . '.' . $ext;
             $uploadFile = $uploadDir . $fileName;
@@ -119,8 +170,16 @@ if (isset($_POST['edit-users'])) {
                     unlink($uploadDir . $oldPhoto);
                 }
             } else {
-                echo "Gagal menyimpan file.";
+                echo "<script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal menyimpan file!',
+                        text: 'Terjadi kesalahan saat upload foto.',
+                        confirmButtonColor: '#d33'
+                    }).then(() => { window.location.href='../../index.php?page=users&update=failed'; });
+                </script>";
                 $photo = $oldPhoto;
+                exit;
             }
         }
     } else {
