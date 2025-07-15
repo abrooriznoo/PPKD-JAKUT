@@ -144,7 +144,7 @@
 
 <!-- Modal Overlay -->
 <div id="addUserModal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
-    <div class="glass-card p-3 sm:p-6 rounded-xl w-[95vw] max-w-xs sm:max-w-md relative">
+    <div class="glass-card p-3 </div>sm:p-6 rounded-xl w-[95vw] max-w-xs sm:max-w-md relative">
         <h3 class="text-base sm:text-lg font-semibold mb-4 text-start">Add User</h3>
         <!-- Photo Preview -->
         <div class="flex justify-center mb-4">

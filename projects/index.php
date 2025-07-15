@@ -51,7 +51,28 @@ if (!isset($_SESSION["email"])) {
 
     <script src="js/dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search)
+            if (params.get('login') === 'success') {
+                Swal.fire({
+                    title: 'Login Berhasil',
+                    text: 'Selamat Datang <?= $_SESSION["fullname"] ?>!',
+                    icon: 'success',
+                    confirmButtonText: 'OK',
+                    timer: 3000,
+                    timerProgressBar: true,
+                }).then(() => {
+                    params.delete('login')
+                    const newUrl =
+                        window.location.pathname +
+                        (params.toString() ? '?' + params.toString() : '') +
+                        window.location.hash
+                    window.history.replaceState({}, '', newUrl)
+                })
+            }
+        })
+    </script>
 </body>
 
 </html>

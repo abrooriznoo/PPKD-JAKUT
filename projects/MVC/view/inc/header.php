@@ -13,13 +13,31 @@
         <div class="glass-card p-3">
             <i class="fas fa-cog text-lg"></i>
         </div>
-        <form action="mvc/controller/SessionsController.php" method="POST">
-            <button type="submit" class="glass-card p-2 text-red-500 hover:text-red-700 flex items-center"
-                name="logout">
-                <i class="fas fa-sign-out-alt mr-1"></i>
-                <span class="hidden md:block">Logout</span>
-            </button>
-        </form>
-        </form>
+        <button type="button" class="glass-card p-2 text-red-500 hover:text-red-700 flex items-center"
+            name="logout" onclick="confirmLogout()">
+            <i class="fas fa-sign-out-alt mr-1"></i>
+            <span class="hidden md:block">Logout</span>
+        </button>
     </div>
 </header>
+
+<script>
+    function confirmLogout() {
+        Swal.fire({
+            title: 'Are you sure want to Logout?',
+            text: ``,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, Logout!',
+            cancelButtonText: 'Cancel',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Redirect to delete action (adjust the URL as needed)
+                window.location.href =
+                    'mvc/controller/SessionsController.php?action=logout';
+            }
+        })
+    }
+</script>
