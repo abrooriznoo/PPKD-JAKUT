@@ -4,6 +4,12 @@
         <div class="flex space-x-2">
             <button class="neumorphic-btn px-3 py-1 rounded-lg text-sm bg-blue-500 bg-opacity-30" type="button"
                 onclick="document.getElementById('addUserModal').classList.remove('hidden')">Add Users</button>
+            <!-- <button class="neumorphic-btn px-3 py-1 rounded-lg text-sm bg-blue-500 bg-opacity-30" type="button"
+                onclick="window.print()">Print</button> -->
+            <a href="mvc/view/pages/report.php"
+                class="neumorphic-btn px-3 py-1 rounded-lg text-sm bg-green-500 bg-opacity-30" target="_blank">
+                Print
+            </a>
         </div>
     </div>
     <div class="glass-card overflow-x-auto">
